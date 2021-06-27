@@ -35,7 +35,7 @@ QBCore.Functions.CreateCallback('qb-fitbit:server:HasFitbit', function(source, c
     local Ply = QBCore.Functions.GetPlayer(source)
     local Fitbit = Ply.Functions.GetItemByName("fitbit")
 
-    if Fitbit > 0 then
+    if Fitbit ~= nil then
         cb(true)
     else
         cb(false)
