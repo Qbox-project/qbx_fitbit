@@ -1,12 +1,7 @@
-QBCore = nil
-TriggerEvent('QBCore:GetObject', function(obj) QBCore = obj end)
-
--- Code
-
 QBCore.Functions.CreateUseableItem("fitbit", function(source, item)
     local Player = QBCore.Functions.GetPlayer(source)
     TriggerClientEvent('qb-fitbit:use', source)
-  end)
+end)
 
 RegisterServerEvent('qb-fitbit:server:setValue')
 AddEventHandler('qb-fitbit:server:setValue', function(type, value)
