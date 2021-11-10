@@ -1,3 +1,5 @@
+local QBCore = exports['qb-core']:GetCoreObject()
+
 QBCore.Functions.CreateUseableItem("fitbit", function(source, item)
     local Player = QBCore.Functions.GetPlayer(source)
     TriggerClientEvent('qb-fitbit:use', source)
