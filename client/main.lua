@@ -44,7 +44,7 @@ RegisterNUICallback('setThirstWarning', function(data)
     local thirstValue = tonumber(data.value)
 
     TriggerServerEvent('qb-fitbit:server:setValue', 'thirst', thirstValue)
-    QBCore.Functions.Notify(Lang:t('success.hunger_set', {thirstvalue = thirstValue}), 'success')
+    QBCore.Functions.Notify(Lang:t('success.thirst_set', {thirstvalue = thirstValue}), 'success')
 end)
 
 -- Threads
@@ -64,8 +64,8 @@ CreateThread(function()
                     end
 
                     if PlayerData.metadata["fitbit"].thirst ~= nil then
-                        if PlayerData.metadata["thirst"] < PlayerData.metadata["fitbit"].thirst  then
-                            TriggerEvent("chatMessage", Lang:t('info.fitbit'), "warning", Lang:t('warning.hunger_warning', {thirst = round(PlayerData.metadata["thirst"], 2)}))
+                        if PlayerData.metadata["thirst"] < PlayerData.metadata["fitbit"].thirst then
+                            TriggerEvent("chatMessage", Lang:t('info.fitbit'), "warning", Lang:t('warning.thirst_warning', {thirst = round(PlayerData.metadata["thirst"], 2)}))
                             PlaySound(-1, "Event_Start_Text", "GTAO_FM_Events_Soundset", 0, 0, 1)
                         end
                     end
