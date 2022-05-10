@@ -1,5 +1,4 @@
 local QBCore = exports['qb-core']:GetCoreObject()
-local inWatch = false
 
 -- Functions
 
@@ -9,7 +8,6 @@ local function openWatch()
         watchData = {}
     })
     SetNuiFocus(true, true)
-    inWatch = true
 end
 
 local function closeWatch()
