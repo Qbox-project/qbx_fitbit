@@ -9,7 +9,7 @@ local function fitbitCheck(PlayerItems)
     for _, item in pairs(PlayerItems) do
         if item.name == "fitbit" then
             hasItem = true
-            break;
+            break
         end
     end
 
