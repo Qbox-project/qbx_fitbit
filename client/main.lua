@@ -36,7 +36,7 @@ local function activateCooldown()
 end
 -- Events
 
-AddStateBagChangeHandler('isLoggedIn', nil, function(bagName, key, value)
+AddStateBagChangeHandler('isLoggedIn', nil, function(_, _, value)
     isLoggedIn = value
 end)
 
