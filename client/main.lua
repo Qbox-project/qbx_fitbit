@@ -1,19 +1,15 @@
 local QBCore = exports['qb-core']:GetCoreObject()
 local PlayerData = QBCore.Functions.GetPlayerData()
+local isLoggedIn = LocalPlayer.state.isLoggedIn
 local hasFitbit = false
 local cooldown = false
 -- Functions
 local function fitbitCheck(PlayerItems)
-    local hasItem = false
-
     for _, item in pairs(PlayerItems) do
         if item.name == "fitbit" then
-            hasItem = true
-            break
+            return true
         end
     end
-
-    return hasItem
 end
 
 local function openWatch()
@@ -40,8 +36,12 @@ local function activateCooldown()
 end
 -- Events
 
+AddStateBagChangeHandler('isLoggedIn', nil, function(bagName, key, value)
+    isLoggedIn = value
+end)
+
 AddEventHandler('onResourceStart', function(resourceName)
-    if GetCurrentResourceName() ~= resourceName then return end
+    if GetCurrentResourceName() ~= resourceName or not isLoggedIn then return end
     PlayerData = QBCore.Functions.GetPlayerData()
     hasFitbit = fitbitCheck(PlayerData.items)
 end)
