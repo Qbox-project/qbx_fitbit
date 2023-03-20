@@ -28,7 +28,7 @@ qbFitbit.Open = function() {
 
 qbFitbit.Close = function() {
     $(".container").fadeOut(150);
-    $.post('https://qb-fitbit/close')
+    $.post(`https://${GetParentResourceName()}/close`)
 }
 
 $(document).on('click', '.fitbit-app', function(e){
@@ -66,7 +66,7 @@ $(document).on('click', '.save-food-settings', function(e){
     var foodValue = $(this).parent().parent().find('input');
 
     if (parseInt(foodValue.val()) <= 100) {
-        $.post('https://qb-fitbit/setFoodWarning', JSON.stringify({
+        $.post(`https://${GetParentResourceName()}/setFoodWarning`, JSON.stringify({
             value: foodValue.val()
         }));
     }
@@ -78,7 +78,7 @@ $(document).on('click', '.save-thirst-settings', function(e){
     var thirstValue = $(this).parent().parent().find('input');
 
     if (parseInt(thirstValue.val()) <= 100) {
-        $.post('https://qb-fitbit/setThirstWarning', JSON.stringify({
+        $.post(`https://${GetParentResourceName()}/setThirstWarning`, JSON.stringify({
             value: thirstValue.val()
         }));
     }
