@@ -1,4 +1,4 @@
-local QBCore = exports['qb-core']:GetCoreObject()
+local QBCore = exports['qbx-core']:GetCoreObject()
 
 QBCore.Functions.CreateUseableItem("fitbit", function(source)
     TriggerClientEvent('qb-fitbit:use', source)
