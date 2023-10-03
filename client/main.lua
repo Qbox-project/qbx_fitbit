@@ -44,11 +44,9 @@ end)
 
 RegisterNetEvent('QBCore:Client:OnPlayerUnload', function()
     hasFitbit = false
-    QBX.PlayerData = {}
 end)
 
-RegisterNetEvent('QBCore:Player:SetPlayerData', function(val)
-    QBX.PlayerData = val
+RegisterNetEvent('QBCore:Player:SetPlayerData', function()
     hasFitbit = fitbitCheck(QBX.PlayerData.items)
 end)
 
