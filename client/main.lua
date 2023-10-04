@@ -3,6 +3,10 @@ local hasFitbit = false
 local cooldown = false
 
 -- Functions
+local function fitbitCheck()
+    hasFitbit = exports.ox_inventory:Search('count', 'fitbit') > 0
+end
+
 local function openWatch()
     SendNUIMessage({
         action = "openWatch",
@@ -26,13 +30,18 @@ AddStateBagChangeHandler('isLoggedIn', nil, function(_, _, value)
     isLoggedIn = value
 end)
 
+AddEventHandler('ox_inventory:itemCount', function(itemName, totalCount)
+    if itemName ~= 'fitbit' then return end
+    hasFitbit = totalCount > 0
+end)
+
 AddEventHandler('onResourceStart', function(resourceName)
     if GetCurrentResourceName() ~= resourceName or not isLoggedIn then return end
-    hasFitbit = exports.ox_inventory:Search('count', 'fitbit') >= 1
+    hasFitbit = fitbitCheck()
 end)
 
 RegisterNetEvent('QBCore:Client:OnPlayerLoaded', function()
-    hasFitbit = exports.ox_inventory:Search('count', 'fitbit') >= 1
+    hasFitbit = fitbitCheck()
 end)
 
 RegisterNetEvent('QBCore:Client:OnPlayerUnload', function()
@@ -40,7 +49,7 @@ RegisterNetEvent('QBCore:Client:OnPlayerUnload', function()
 end)
 
 RegisterNetEvent('QBCore:Player:SetPlayerData', function()
-    hasFitbit = exports.ox_inventory:Search('count', 'fitbit') >= 1
+    hasFitbit = fitbitCheck()
 end)
 
 RegisterNetEvent('hud:client:UpdateNeeds', function(newHunger, newThirst)
