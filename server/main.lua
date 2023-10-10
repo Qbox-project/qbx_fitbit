@@ -1,19 +1,17 @@
-local QBCore = exports['qbx-core']:GetCoreObject()
-
-QBCore.Functions.CreateUseableItem("fitbit", function(source)
+exports.qbx_core:CreateUseableItem("fitbit", function(source)
     TriggerClientEvent('qb-fitbit:use', source)
 end)
 
 RegisterNetEvent('qb-fitbit:server:setValue', function(type, value)
     local src = source
-    local Player = QBCore.Functions.GetPlayer(src)
-    if not Player then return end
-    if not Player.Functions.GetItemByName("fitbit") then return end
+    local player = exports.qbx_core:GetPlayer(src)
+    if not player then return end
+    if exports.ox_inventory:Search(source, 'count', 'fitbit') < 1 then return end
 
-    local currentMeta = Player.PlayerData.metadata["fitbit"]
+    local currentMeta = player.PlayerData.metadata.fitbit
     local fitbitData = {
         thirst = type == "thirst" and value or currentMeta.thirst,
         food = type == "food" and value or currentMeta.food
     }
-    Player.Functions.SetMetaData('fitbit', fitbitData)
+    player.Functions.SetMetaData('fitbit', fitbitData)
 end)
